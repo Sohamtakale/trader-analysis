@@ -1,169 +1,144 @@
+# README.md
+
 # 📊 Trader Performance vs Market Sentiment Analysis
 
-## 📌 Project Overview
+## Project Overview
 
-This project analyzes how cryptocurrency trader performance and behavior change under different market sentiment conditions (Fear, Greed, Neutral).
+This project analyzes how cryptocurrency trader performance and behaviour change across different market sentiment regimes (Fear, Greed, Neutral). The analysis uses trader transaction data along with Bitcoin Fear & Greed Index sentiment classification.
 
-Using historical trader transaction data and Bitcoin Fear & Greed Index data, this project explores how sentiment impacts trader profitability, trading behavior, and risk exposure.
-
----
-
-## 🎯 Project Objectives
-
-* Analyze trader performance across different sentiment regimes
-* Identify behavioral changes during Fear vs Greed markets
-* Segment traders based on activity, risk, and consistency
-* Generate actionable sentiment-aware trading insights
+The goal is to identify behavioural patterns, performance differences, trader segmentation, and actionable trading insights.
 
 ---
 
-## 📂 Datasets Used
+## Repository Structure
 
-### 1️⃣ Bitcoin Market Sentiment Dataset
-
-Contains daily market sentiment classification:
-
-* Fear
-* Greed
-* Neutral
-
-Used to categorize the trading environment.
-
----
-
-### 2️⃣ Historical Trader Data (Hyperliquid)
-
-Includes:
-
-* Account
-* Timestamp
-* Closed PnL
-* Trade size (USD)
-* Trade direction (Buy/Sell)
-* Transaction metadata
+```
+trader-analysis/
+│
+├── data/                 # Raw datasets
+├── notebooks/
+│   ├── analysis.ipynb
+│   └── clustering.ipynb (bonus)
+├── dashboard/
+│   └── app.py            # Streamlit dashboard (bonus)
+├── outputs/              # Generated charts and screenshots
+├── REPORT.md             # Detailed analysis answers
+├── requirements.txt
+└── README.md
+```
 
 ---
 
-## ⚙️ Methodology Summary
+## Setup Instructions
 
-### Data Preparation
+### 1. Clone Repository
 
-* Loaded and inspected both datasets
-* Checked missing values and duplicates
-* Converted timestamps to datetime format
-* Aggregated trade data to daily trader-level metrics
-* Merged trading data with sentiment data
-* Removed rows with missing sentiment classification
-
-Final dataset:
-**1963 trader-day observations**
+```bash
+git clone https://github.com/Sohamtakale/trader-analysis.git
+cd trader-analysis
+```
 
 ---
 
-### Feature Engineering
+### 2. Create Virtual Environment
 
-Daily trader metrics created:
-
-* `daily_pnl` → Total daily profit/loss
-* `win_rate` → Percentage of profitable trades
-* `trades_per_day` → Trade frequency
-* `avg_trade_size` → Risk exposure proxy
-* `long_ratio` → Directional bias indicator
-
-Note:
-Leverage data was unavailable. Average trade size was used as a proxy for trading risk.
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
 ---
 
-## 📈 Key Results Summary
+### 3. Install Dependencies
 
-* Traders generated highest profitability during Fear sentiment periods.
-* Trading activity and trade size increased during volatile market conditions.
-* High activity and high risk traders benefited most from Fear sentiment.
-* Trade sizing had stronger impact on profitability than win rate alone.
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-## 📊 Output Visualizations
+## How To Run The Analysis
 
-All generated charts are stored in:
+### Run Jupyter Notebook
+
+```bash
+jupyter notebook
+```
+
+Open:
+
+```
+notebooks/analysis.ipynb
+```
+
+Run all cells sequentially to reproduce results, charts, and insights.
+
+---
+
+## How To Run Clustering (Bonus)
+
+Open:
+
+```
+notebooks/clustering.ipynb
+```
+
+Run all cells to generate trader behavioural archetypes.
+
+---
+
+## How To Run Dashboard (Bonus)
+
+```bash
+streamlit run dashboard/app.py
+```
+
+The dashboard allows interactive exploration of trading performance across sentiment regimes and trader segments.
+
+---
+
+## Output Charts
+
+Generated visualizations are saved inside:
 
 ```
 outputs/
 ```
 
-Example outputs include:
+These include:
 
-* Trader PnL by sentiment
-* PnL by activity segment
-* PnL by risk segment
-* Consistency analysis
-
----
-
-## 📁 Project Structure
-
-```
-trader-analysis/
-│
-├── data/              Raw datasets
-├── notebooks/         Analysis notebook
-│   └── analysis.ipynb
-├── outputs/           Generated charts
-├── src/               Utility scripts (optional)
-├── requirements.txt   Python dependencies
-├── README.md          Project documentation
-└── .gitignore
-```
+* PnL by sentiment
+* Activity segment performance
+* Risk segment performance
+* Clustering visualizations
+* Dashboard preview
 
 ---
 
-## 🔧 Setup Instructions
+## Reproducibility
 
-### 1️⃣ Clone Repository
-
-git clone https://github.com/Sohamtakale/trader-analysis.git
-cd trader-analysis
+All preprocessing, feature engineering, modelling, and visualization steps are documented within the notebooks.
 
 ---
 
-### 2️⃣ Create Virtual Environment
-
-python3 -m venv venv
-source venv/bin/activate
----
-
-### 3️⃣ Install Dependencies
-
-pip install -r requirements.txt
----
-
-## ▶️ Running The Project
-
-### Launch Jupyter Notebook
-
-jupyter notebook
-
-Open:
-notebooks/analysis.ipynb
-
-Run all cells sequentially to reproduce results and charts.
-
----
-
-## 📦 Reproducibility
-
-All preprocessing, feature engineering, and analysis steps are documented inside the notebook to ensure reproducibility.
-
----
-
-## 🛠 Tech Stack
+## Tech Stack
 
 * Python
 * Pandas
+* NumPy
 * Matplotlib
 * Seaborn
-* Jupyter Notebook
+* Scikit-learn
+* Streamlit
 * Git & GitHub
 
-ANSWERS FOR BOTH PART B AND C ARE PRESENT IN REPORT.MD AND READMEMD.   
+---
+
+## Future Improvements
+
+* Predictive modelling for next-day trader profitability
+* Risk-adjusted performance metrics
+* Expanded behavioural clustering
+* Enhanced dashboard interactivity
+
+---

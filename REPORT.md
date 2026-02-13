@@ -1,251 +1,164 @@
-# 📊 Trader Performance vs Market Sentiment Analysis
+📄 REPORT.md (With Chart References)
+Trader Performance vs Market Sentiment Analysis Report
+PART B — Analysis
+Q1. Does performance (PnL, win rate, drawdown proxy) differ between Fear vs Greed days?
+Answer:
 
-## 📌 Project Overview
+Yes, trader performance varies significantly across sentiment regimes.
 
-This project analyzes how cryptocurrency trader behavior and performance change under different market sentiment conditions (Fear, Greed, Neutral).
+📊 Evidence — Average Daily PnL by Sentiment
 
-Using historical trader transaction data and Bitcoin Fear & Greed Index data, we investigate:
+Observations:
 
-* Whether trader profitability differs across sentiment regimes
-* How trading behavior changes during Fear vs Greed
-* How different trader segments respond to sentiment
-* What actionable trading strategies can be derived
+Fear sentiment produced the highest average daily profitability.
 
----
+Greed sentiment produced moderate profitability.
 
-# 📂 Datasets Used
+Neutral sentiment showed the lowest profitability.
 
-## 1️⃣ Bitcoin Market Sentiment Dataset
+Win Rate Comparison
 
-* Daily sentiment classification (Fear / Greed / Neutral)
-* Used to categorize trading environment
+Although win rate differences are small:
 
-## 2️⃣ Historical Trader Data (Hyperliquid)
+Win rate is slightly higher during Greed.
 
-Includes:
+However, Fear produces higher profitability overall.
 
-* Account
-* Timestamp
-* Closed PnL
-* Trade size (USD)
-* Trade direction (Buy/Sell)
-* Transaction-level details
+This suggests that trade sizing and volatility exposure drive profitability more than trade accuracy.
 
----
+Drawdown Proxy
 
-# ⚙️ Methodology
+Using cumulative PnL and rolling maximum as a drawdown proxy:
 
-## Step 1 — Data Preparation
+Fear periods show larger PnL swings (higher volatility).
 
-* Loaded both datasets
-* Checked missing values and duplicates
-* Converted timestamps to datetime
-* Aggregated trades to daily trader-level metrics
-* Merged sentiment dataset with trading data
-* Removed rows with missing sentiment labels
-
-Final dataset:
-**1963 trader-day observations**
-
----
-
-## Step 2 — Feature Engineering
-
-Daily trader metrics created:
-
-* `daily_pnl` → Total daily profit/loss
-* `win_rate` → % profitable trades
-* `trades_per_day` → Trade frequency
-* `avg_trade_size` → Risk exposure proxy
-* `long_ratio` → Direction bias
-* Sentiment classification
-
-Note:
-Leverage was not directly available. Average trade size was used as a proxy for trader risk exposure.
-
----
-
-# 📊 Part B — Behaviour & Performance Analysis
-
-## 1️⃣ Performance Differences Across Sentiment
-
-Findings:
-
-* Fear sentiment produced highest average trader profitability
-* Greed sentiment produced slightly higher win rate
-* Neutral sentiment showed lowest performance
+Greed periods show more stable but smaller profit trajectories.
 
 Interpretation:
-Profitability differences are driven more by volatility and trade sizing than by trade accuracy.
 
----
+Fear-driven markets introduce volatility, allowing traders to capture larger price movements, resulting in higher daily PnL despite similar win rates.
 
-## 2️⃣ Behaviour Changes Based On Sentiment
+Q2. Do traders change behavior based on sentiment (trade frequency, leverage, long/short bias, position sizes)?
+Answer:
 
-During Fear sentiment:
+Yes, traders modify their behaviour significantly across sentiment regimes.
 
-* Increased trade frequency
-* Larger average trade size
-* Slight increase in long bias
+📊 Evidence — Activity Segment Performance
 
-During Greed sentiment:
+Trade Frequency:
 
-* Reduced trade size
-* Lower trading frequency
-* Slightly higher win rate but lower profitability
+Traders execute more trades during Fear periods.
 
-Conclusion:
-Traders behave more aggressively during fearful markets.
+High activity traders significantly outperform low activity traders.
 
----
+📊 Evidence — Risk Segment Performance
 
-## 3️⃣ Trader Segmentation
+Position Size / Leverage Proxy:
 
-### 🔹 Activity Segmentation
+Average trade size increases during Fear sentiment.
 
-High activity traders consistently outperformed low activity traders, especially during Fear periods.
+High-risk traders generate highest profits during Fear.
 
----
+Low-risk traders perform relatively better during Greed.
 
-### 🔹 Risk Segmentation
+Directional Bias
 
-High risk traders generated largest profits during Fear sentiment but showed weaker performance during Greed.
+Slight increase in long bias during Fear sentiment.
 
-Low risk traders showed stable but smaller returns.
+No extreme directional skew observed.
 
----
+Interpretation:
 
-### 🔹 Consistency Segmentation
+Fear sentiment triggers aggressive behaviour:
 
-Consistency measured using win-rate volatility.
+Higher trade frequency
 
-Consistent traders demonstrated stable profitability patterns while inconsistent traders showed larger sentiment-driven performance swings.
+Larger trade sizes
 
----
+Increased risk exposure
 
-# 🔍 Key Insights
+Greed sentiment leads to:
 
-1. Fear sentiment produces highest trader profitability.
-2. High activity traders benefit most during volatile Fear periods.
-3. Trade sizing contributes more to profitability than win-rate accuracy.
-4. Aggressive risk-taking correlates with higher returns during volatility spikes.
+Reduced trade size
 
----
+Lower participation
 
-# 💡 Part C — Actionable Strategy Recommendations
+Slightly higher win rate but lower PnL
 
-## Strategy 1 — Volatility Exploitation
+Q3. Identify 2–3 Trader Segments
+Segment 1 — High Activity vs Low Activity Traders
 
-Increase trading frequency and moderately increase trade size during Fear sentiment, particularly for high activity traders.
+High Activity Traders:
 
-## Strategy 2 — Risk Moderation
+Significantly higher PnL across all regimes
 
-Reduce trade size and apply stricter risk control during Greed sentiment to avoid overconfidence-driven losses.
+Most profitable during Fear
 
----
+Low Activity Traders:
 
-# 📈 Visual Evidence
+Stable but lower returns
 
-All supporting charts and tables are available in:
+Less sentiment-sensitive
 
-```
-notebooks/analysis.ipynb
-```
+Segment 2 — High Risk vs Low Risk Traders
 
----
+High Risk Traders:
 
-# 🛠 Tech Stack
+Highest profitability during Fear
 
-* Python
-* Pandas
-* Matplotlib / Seaborn
-* Jupyter Notebook
-* Git & GitHub
+Higher volatility in returns
 
----
+Low Risk Traders:
 
-# 📁 Project Structure
+More stable returns
 
-```
-data/              Raw datasets
-notebooks/         Analysis notebook
-outputs/           Generated charts
-src/               Utility scripts (if any)
-README.md          Project overview & documentation
-```
+Perform relatively better during Greed
 
----
+Segment 3 — Consistent vs Inconsistent Traders
 
-# 🔧 Setup Instructions
+Consistency measured using standard deviation of daily win rate.
 
-## 1️⃣ Clone Repository
+Consistent Traders:
 
-```bash
-git clone https://github.com/Sohamtakale/trader-analysis.git
-cd trader-analysis
-```
+Stable performance patterns
 
----
+Lower volatility in returns
 
-## 2️⃣ Create Virtual Environment
+Inconsistent Traders:
 
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
+Larger profit swings
 
----
+Higher sensitivity to sentiment shifts
 
-## 3️⃣ Install Dependencies
+🔍 Key Insights
 
-```bash
-pip install -r requirements.txt
-```
+Trader profitability is highest during Fear sentiment periods.
 
----
+High activity traders consistently outperform low activity traders.
 
-# ▶️ How To Run The Project
+Risk-taking behaviour increases during Fear and drives higher returns.
 
-## Run Notebook Analysis
+Trade size has stronger impact on profitability than win rate accuracy.
 
-```bash
-jupyter notebook
-```
+Sentiment impacts behaviour more than accuracy.
 
-Then open:
+PART C — Actionable Strategy Recommendations
+Strategy 1 — Fear Market Volatility Strategy
 
-```
-notebooks/analysis.ipynb
-```
+Rule:
+Increase trade participation and moderately increase trade size during Fear sentiment for high-activity and high-risk traders.
 
-Run all cells sequentially.
+Rationale:
+Fear periods historically produce the highest trader profitability due to volatility expansion.
 
----
+Strategy 2 — Greed Market Risk Moderation Strategy
 
-## Generate Charts
+Rule:
+Reduce average trade size and apply stricter risk control during Greed sentiment, especially for high-risk traders.
 
-Charts are generated automatically when running the notebook.
+Rationale:
+Greed periods show lower overall profitability and may encourage overconfidence-driven inefficiencies.
 
----
+Conclusion
 
-# 📦 Reproducibility
-
-All preprocessing, feature engineering, and analysis steps are fully documented inside the notebook.
-
----
-
-# 🚀 Future Improvements
-
-* Predictive ML model for trader profitability
-* Clustering traders into behavioral archetypes
-* Streamlit dashboard for interactive visualization
-* Risk-adjusted performance metrics
-
----
-
-# 🧠 Conclusion
-
-This analysis demonstrates that market sentiment significantly influences trader behaviour and performance. Fear-driven volatility provides higher profit opportunities, particularly for high activity and high risk traders. Incorporating sentiment-aware strategies can improve performance and risk management.
-
----
-
+The analysis demonstrates that market sentiment significantly influences trader behaviour and performance. Fear-driven volatility provides higher profit opportunities, particularly for high activity and high risk traders. Incorporating sentiment-aware strategies can improve both profitability and risk management.
