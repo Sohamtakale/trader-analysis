@@ -1,4 +1,4 @@
-📄 REPORT.md (With Chart References)
+📄 REPORT.md 
 Trader Performance vs Market Sentiment Analysis Report
 PART B — Analysis
 Q1. Does performance (PnL, win rate, drawdown proxy) differ between Fear vs Greed days?
